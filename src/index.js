@@ -1,19 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
-import { css } from 'emotion'
+import { App } from './Components/App/App'
+import { BrowserRouter } from 'react-router-dom'
 
-const className = css`
-    color: hotpink;
-`
+const AppWithoutHot = () => (
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+)
 
-class App extends React.Component {
-    render() {
-        return <div className={className}>Hello {this.props.name}</div>
-    }
-}
+const AppWithHot = hot(module)(AppWithoutHot)
 
-const AppWithHot = hot(module)(App)
-
-var mountNode = document.getElementById('app')
-ReactDOM.render(<AppWithHot name="Jane" />, mountNode)
+ReactDOM.render(<AppWithHot />, document.getElementById('app'))
