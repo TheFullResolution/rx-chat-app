@@ -27,10 +27,14 @@
   "dependencies": {
     "emotion": "9.2.8",
     "firebase": "5.4.1",
+    "formik": "^1.1.1",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-hot-loader": "4.3.5",
-    "react-router-dom": "^4.3.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "4.3.1",
+    "redux": "4.0.0",
+    "redux-observable": "1.0.0",
     "rxfire": "3.0.0",
     "rxjs": "6.2.2"
   }

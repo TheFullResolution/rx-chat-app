@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
 import { App } from './Components/App/App'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store } from './store/redux'
+import { authListener } from './store/auth/listener'
 
-const AppWithoutHot = () => (
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+authListener()
+
+const RootWithoutHot = () => (
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
 )
 
-const AppWithHot = hot(module)(AppWithoutHot)
+const RootWithHot = hot(module)(RootWithoutHot)
 
-ReactDOM.render(<AppWithHot />, document.getElementById('app'))
+ReactDOM.render(<RootWithHot />, document.getElementById('app'))

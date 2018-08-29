@@ -3,6 +3,8 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { NotFound } from '../Routes/NotFound/NotFound'
 import { Home } from '../Routes/Home/Home'
+import { Login } from '../Routes/Login/Login'
+import { Signup } from '../Routes/Signup/Signup'
 
 const className = css`
     color: hotpink;
@@ -14,6 +16,8 @@ export class App extends React.Component {
             <div className={className}>
                 <Switch>
                     <Route path="/" component={Home} exact />
+                    <Route path="/login" component={Login} exact />
+                    <Route path="/signup" component={Signup} exact />
                     <Route component={NotFound} />
                 </Switch>
             </div>
