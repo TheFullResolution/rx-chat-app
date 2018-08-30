@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable no-undef,no-unused-vars */
 
 const webpack = require('webpack')
 
@@ -36,7 +36,10 @@ const config = {
                                 plugins: [['emotion', { sourceMap: true, autoLabel: true }]],
                             },
                         },
-                        plugins: ['@babel/plugin-proposal-object-rest-spread'],
+                        plugins: [
+                            '@babel/plugin-proposal-object-rest-spread',
+                            '@babel/plugin-syntax-dynamic-import',
+                        ],
                     },
                 },
             },
@@ -47,7 +50,7 @@ const config = {
     },
     devServer: {
         historyApiFallback: true,
-        contentBase: path.join(__dirname, 'dist')
+        contentBase: path.join(__dirname, 'dist'),
     },
 }
 

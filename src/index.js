@@ -5,9 +5,6 @@ import { App } from './Components/App/App'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './store/redux'
-import { authListener } from './store/auth/listener'
-
-authListener()
 
 const RootWithoutHot = () => (
     <Provider store={store}>
