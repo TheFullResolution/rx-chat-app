@@ -7,7 +7,7 @@ const logOut = (ev) => {
     firebaseApp.subscribe((app) => {
         app.auth().signOut()
     })
-    firebaseApp.unsubscribe()
+
 }
 
 export const Header = () => (

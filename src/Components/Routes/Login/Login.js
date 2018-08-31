@@ -1,6 +1,7 @@
 import React from 'react'
 import { withFormik } from 'formik'
 import { validate } from './methods/validate'
+import { handleSubmit } from './methods/handleSubmit'
 
 const InnerFormLogin = ({
     isSubmitting,
@@ -45,11 +46,6 @@ const InnerFormLogin = ({
 export const Login = withFormik({
     mapPropsToValues: () => ({ email: '', password: '', name: '' }),
     validate,
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
-            setSubmitting(false)
-        }, 1000)
-    },
-    displayName: 'BasicForm', // helps with React DevTools
+    handleSubmit,
+    displayName: 'LoginFrom', // helps with React DevTools
 })(InnerFormLogin)

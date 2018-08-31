@@ -1,4 +1,4 @@
-import { from, forkJoin, BehaviorSubject } from 'rxjs'
+import { from, forkJoin, ReplaySubject } from 'rxjs'
 import { tap, map } from 'rxjs/operators'
 import { authListener } from '../auth/listener'
 
@@ -29,14 +29,16 @@ const lazyLoadFireBase = (config) => {
     )
 }
 
-const firebaseApp = new  BehaviorSubject()
+const firebaseApp = new ReplaySubject(1)
 
-    lazyLoadFireBase(CONFIG)
+lazyLoadFireBase(CONFIG)
     .pipe(
         tap((app) => {
             authListener(app)
         })
     )
     .subscribe((app) => firebaseApp.next(app))
+
+firebaseApp.asObservable()
 
 export { firebaseApp }
