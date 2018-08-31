@@ -1,10 +1,10 @@
 import React from 'react'
-import { firebaseApp } from '../../../store/firebase'
+import {firebaseApp$} from '../../../store/firebase/config'
 
 const logOut = (ev) => {
     ev.preventDefault()
 
-    firebaseApp.subscribe((app) => {
+    firebaseApp$.subscribe((app) => {
         app.auth().signOut()
     })
 

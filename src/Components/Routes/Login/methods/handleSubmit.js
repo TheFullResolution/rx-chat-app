@@ -1,7 +1,7 @@
-import { firebaseApp } from '../../../../store/firebase'
+import { firebaseApp$ } from '../../../../store/firebase/config'
 
 export const handleSubmit = (values, { props, setSubmitting, setErrors }) => {
-    firebaseApp.subscribe((app) => {
+    firebaseApp$.subscribe((app) => {
         app.auth()
             .signInWithEmailAndPassword(values.email, values.password)
             .then((user) => {

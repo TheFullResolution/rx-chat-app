@@ -1,8 +1,7 @@
 import { from, forkJoin, ReplaySubject } from 'rxjs'
-import { tap, map } from 'rxjs/operators'
-import { authListener } from '../auth/listener'
+import { map } from 'rxjs/operators'
 
-const CONFIG = {
+export const CONFIG = {
     apiKey: 'AIzaSyC6UE-2WwLpQYXWwzq51RHwiz_HvgfDTPs',
     authDomain: 'sms-bird-app.firebaseapp.com',
     databaseURL: 'https://sms-bird-app.firebaseio.com',
@@ -11,7 +10,7 @@ const CONFIG = {
     messagingSenderId: '194462414882',
 }
 
-const lazyLoadFireBase = (config) => {
+export const lazyLoadFireBase = (config) => {
     const app$ = from(import('firebase/app'))
     const firestore$ = from(import('firebase/firestore'))
     const fireAuth$ = from(import('firebase/auth'))
@@ -29,16 +28,8 @@ const lazyLoadFireBase = (config) => {
     )
 }
 
-const firebaseApp = new ReplaySubject(1)
+const firebaseApp$ = new ReplaySubject(1)
 
-lazyLoadFireBase(CONFIG)
-    .pipe(
-        tap((app) => {
-            authListener(app)
-        })
-    )
-    .subscribe((app) => firebaseApp.next(app))
+firebaseApp$.asObservable()
 
-firebaseApp.asObservable()
-
-export { firebaseApp }
+export { firebaseApp$ }

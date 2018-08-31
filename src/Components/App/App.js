@@ -1,17 +1,22 @@
 import { css } from 'emotion'
-import React from 'react'
+import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { NotFound } from '../Routes/NotFound/NotFound'
 import { Home } from '../Routes/Home/Home'
 import { Login } from '../Routes/Login/Login'
 import { Signup } from '../Routes/Signup/Signup'
 import { Header } from '../Blocks/Header/Header'
+import {store} from '../../store/redux'
+import { startLoadingFirebase } from '../../store/firebase/actions'
 
 const className = css`
     color: hotpink;
 `
 
-export class App extends React.Component {
+export class App extends Component {
+    componentDidMount() {
+        store.dispatch(startLoadingFirebase())
+    }
     render() {
         return (
             <div className={className}>
@@ -26,3 +31,4 @@ export class App extends React.Component {
         )
     }
 }
+
