@@ -1,51 +1,30 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import { withFormik } from 'formik'
 import { validate } from './methods/validate'
-import { handleSubmit } from './methods/handleSubmit'
+import { submit } from './methods/submit'
+import { LoginForm } from './LoginForm/LoginForm'
+import connect from 'react-redux/es/connect/connect'
+import { Redirect } from 'react-router-dom'
 
-const InnerFormLogin = ({
-    isSubmitting,
-    values,
-    touched,
-    errors,
-    handleSubmit,
-    handleChange,
-    handleBlur,
-}) => (
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-            id="email"
-            placeholder="Enter your email"
-            type="text"
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={errors.email && touched.email ? 'text-input error' : 'text-input'}
-        />
-        {errors.email && touched.email && <div className="input-feedback">{errors.email}</div>}
-        <label htmlFor="password">Password</label>
-        <input
-            id="password"
-            placeholder="Enter your email"
-            type="password"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={errors.password && touched.password ? 'text-input error' : 'text-input'}
-        />
-        {errors.password &&
-            touched.password && <div className="input-feedback">{errors.password}</div>}
+export const LoginComponent = ({ loggedIn, location }) => {
+    const { from } = location.state || {
+        from: { pathname: '/' },
+    }
 
-        <button type="submit" disabled={isSubmitting}>
-            Submit
-        </button>
-    </form>
-)
+    if (loggedIn) {
+        return <Redirect to={from} />
+    }
 
-export const Login = withFormik({
-    mapPropsToValues: () => ({ email: '', password: '', name: '' }),
-    validate,
-    handleSubmit,
-    displayName: 'LoginFrom', // helps with React DevTools
-})(InnerFormLogin)
+    return <LoginForm validate={validate} submit={submit} />
+}
+
+LoginComponent.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    location: PropTypes.object,
+}
+
+const mapStateToProps = (state) => ({
+    loggedIn: state.auth.loggedIn,
+})
+
+export const Login = connect(mapStateToProps)(LoginComponent)

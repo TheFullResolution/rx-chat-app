@@ -1,7 +1,8 @@
 import { SET_AUTHENTICATED, SET_UNAUTHENTICATED } from './actions'
 
 const defaultState = {
-    auth: false,
+    loggedIn: false,
+    profileLoaded: false,
     user: null,
 }
 
@@ -9,12 +10,13 @@ const authReducer = (state = defaultState, action) => {
     switch (action.type) {
         case SET_AUTHENTICATED:
             return {
-                auth: true,
+                loggedIn: true,
+                profileLoaded: true,
                 user: action.payload,
             }
 
         case SET_UNAUTHENTICATED:
-            return defaultState
+            return { ...defaultState, profileLoaded: true }
         default:
             return state
     }

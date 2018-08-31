@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
@@ -29,11 +30,12 @@
   "dependencies": {
     "emotion": "9.2.8",
     "firebase": "5.4.1",
-    "formik": "^1.1.1",
+    "formik": "1.1.1",
+    "prop-types": "latest",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-hot-loader": "4.3.5",
-    "react-redux": "^5.0.7",
+    "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",
     "redux": "4.0.0",
     "redux-observable": "1.0.0",

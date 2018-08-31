@@ -8,6 +8,7 @@ import { Signup } from '../Routes/Signup/Signup'
 import { Header } from '../Blocks/Header/Header'
 import {store} from '../../store/redux'
 import { startLoadingFirebase } from '../../store/firebase/actions'
+import { PrivateRoute } from '../Blocks/PrivateRoute/PrivateRoute'
 
 const className = css`
     color: hotpink;
@@ -22,7 +23,7 @@ export class App extends Component {
             <div className={className}>
                 <Header />
                 <Switch>
-                    <Route path="/" component={Home} exact />
+                    <PrivateRoute path="/" component={Home} exact />
                     <Route path="/login" component={Login} exact />
                     <Route path="/signup" component={Signup} exact />
                     <Route component={NotFound} />
