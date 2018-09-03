@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Formik } from 'formik'
+import { Input } from '../../../Blocks/Styled/Input'
+import { Button } from '../../../Blocks/Styled/Button'
 
 export const LoginForm = ({ submit, validate }) => (
     <Formik
@@ -15,7 +17,7 @@ export const LoginForm = ({ submit, validate }) => (
             return (
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
-                    <input
+                    <Input
                         id="email"
                         placeholder="Enter your email"
                         type="text"
@@ -29,7 +31,7 @@ export const LoginForm = ({ submit, validate }) => (
                     {errors.email &&
                         touched.email && <div className="input-feedback">{errors.email}</div>}
                     <label htmlFor="password">Password</label>
-                    <input
+                    <Input
                         id="password"
                         placeholder="Enter your email"
                         type="password"
@@ -43,9 +45,9 @@ export const LoginForm = ({ submit, validate }) => (
                     {errors.password &&
                         touched.password && <div className="input-feedback">{errors.password}</div>}
 
-                    <button type="submit" disabled={isSubmitting}>
+                    <Button type="submit" disabled={isSubmitting}>
                         Submit
-                    </button>
+                    </Button>
                 </form>
             )
         }}

@@ -6,9 +6,13 @@ import { Home } from '../Routes/Home/Home'
 import { Login } from '../Routes/Login/Login'
 import { Signup } from '../Routes/Signup/Signup'
 import { Header } from '../Blocks/Header/Header'
-import {store} from '../../store/redux'
+import { store } from '../../store/redux'
 import { startLoadingFirebase } from '../../store/firebase/actions'
 import { PrivateRoute } from '../Blocks/PrivateRoute/PrivateRoute'
+import { ThemeProvider } from 'emotion-theming'
+import { theme, globalStyling } from '../styling'
+
+globalStyling()
 
 const className = css`
     color: hotpink;
@@ -20,16 +24,17 @@ export class App extends Component {
     }
     render() {
         return (
-            <div className={className}>
-                <Header />
-                <Switch>
-                    <PrivateRoute path="/" component={Home} exact />
-                    <Route path="/login" component={Login} exact />
-                    <Route path="/signup" component={Signup} exact />
-                    <Route component={NotFound} />
-                </Switch>
-            </div>
+            <ThemeProvider theme={theme}>
+                <div className={className}>
+                    <Header />
+                    <Switch>
+                        <PrivateRoute path="/" component={Home} exact />
+                        <Route path="/login" component={Login} exact />
+                        <Route path="/signup" component={Signup} exact />
+                        <Route component={NotFound} />
+                    </Switch>
+                </div>
+            </ThemeProvider>
         )
     }
 }
-
