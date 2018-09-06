@@ -1,5 +1,5 @@
 {
-  "name": "sms-bird-app",
+  "name": "lazyload-firebase-react-rxjs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,7 @@
   },
   "author": "Jedrzej Lewandowski",
   "license": "ISC",
+  "repository": "",
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
