@@ -35,7 +35,7 @@ export class PrivateRouteComponent extends Component {
                         return <Component {...props} />
                     }
 
-                    //if all other coditions not met, go to login page
+                    //if all other conditions not met, go to login page
                     return (
                         <Redirect
                             to={{
