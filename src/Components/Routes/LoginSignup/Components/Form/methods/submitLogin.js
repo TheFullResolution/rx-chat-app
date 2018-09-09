@@ -1,6 +1,6 @@
 import { firebaseApp$ } from '../../../../../../store/firebase/config'
 
-export const submitLogin = (values, { props, setSubmitting, setErrors }) => {
+export const submitLogin = (values, { setSubmitting, setErrors }) => {
   firebaseApp$.subscribe((app) => {
     app
       .auth()

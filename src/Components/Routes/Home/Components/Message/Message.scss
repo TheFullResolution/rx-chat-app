@@ -1,0 +1,20 @@
+.form {
+  display: flex;
+}
+
+.button {
+  @extend %button;
+  @include coloriseBtn($primaryColor);
+  color: $backgroundColor;
+  margin-left: $marginS;
+}
+
+.input {
+  flex: 1 1 auto;
+  resize: vertical;
+  height: auto;
+  padding: $marginS;
+  border-radius: $marginXS;
+  font-size: inherit;
+  border: 1px solid $primaryColor;
+}

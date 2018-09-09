@@ -6,14 +6,6 @@
   transition: background-color 300ms cubic-bezier(0.645, 0.045, 0.355, 1),
   border-color 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  &[disabled],
-  &.disabled {
-    &,
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
   &:active {
     box-shadow: none;
   }
@@ -21,5 +13,14 @@
   &:hover,
   &:active {
     background-color: lighten($color, 15%);
+  }
+
+  &[disabled],
+  &.disabled {
+    &,
+    &:hover {
+      background-color: lighten($color, 15%);
+      opacity: 0.8;
+    }
   }
 }

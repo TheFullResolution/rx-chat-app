@@ -2,7 +2,7 @@ import * as style from './Form.scss'
 
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Field } from '../Field/Field'
+import { Field } from '../../../../Blocks/Field/Field'
 import { Formik } from 'formik'
 import { LOGIN } from '../../LoginSignupConstants'
 import { submitLogin } from './methods/submitLogin'

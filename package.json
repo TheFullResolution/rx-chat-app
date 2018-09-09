@@ -7,7 +7,7 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack -d --mode development",
     "build-prod": "webpack -p --mode production",
-    "start": "webpack-dev-server --hot --mode development"
+    "start": "webpack-dev-server --mode development"
   },
   "author": "Jedrzej Lewandowski",
   "license": "ISC",
@@ -21,32 +21,32 @@
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.1.5",
     "babel-eslint": "^9.0.0",
-    "babel-loader": "^8.0.0",
+    "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
-    "eslint": "^5.4.0",
+    "eslint": "^5.5.0",
     "eslint-plugin-react": "^7.11.1",
     "node-sass": "^4.9.3",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
-    "webpack": "^4.17.1",
+    "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.6"
+    "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "firebase": "5.4.1",
+    "firebase": "5.4.2",
     "focus-visible": "^4.1.5",
-    "formik": "1.1.1",
+    "formik": "1.2.0",
     "prop-types": "latest",
-    "react": "16.4.2",
-    "react-dom": "16.4.2",
-    "react-hot-loader": "4.3.5",
+    "react": "16.5.0",
+    "react-dom": "16.5.0",
+    "react-hot-loader": "4.3.6",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",
     "redux": "4.0.0",
     "redux-observable": "1.0.0",
-    "rxfire": "3.0.0",
-    "rxjs": "6.2.2"
+    "rxfire": "3.0.1",
+    "rxjs": "6.3.2"
   }
 }

@@ -10,6 +10,8 @@ export const CONFIG = {
     messagingSenderId: '185436417713',
 }
 
+export const COLLECTION = 'messages'
+
 export const lazyLoadFireBase = (config) => {
     const app$ = from(import('firebase/app'))
     const firestore$ = from(import('firebase/firestore'))
