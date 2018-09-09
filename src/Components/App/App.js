@@ -6,13 +6,13 @@ import { NotFound } from '../Routes/NotFound/NotFound'
 import { Home } from '../Routes/Home/Home'
 import { LoginSignup } from '../Routes/LoginSignup/LoginSignup'
 import { Header } from '../Blocks/Header/Header'
-import { store } from '../../store/redux'
+import { chatStore } from '../../store/redux'
 import { startLoadingFirebase } from '../../store/firebase/actions'
 import { PrivateRoute } from '../Blocks/PrivateRoute/PrivateRoute'
 
 export class App extends Component {
   componentDidMount() {
-    store.dispatch(startLoadingFirebase())
+    chatStore.dispatch(startLoadingFirebase())
   }
   render() {
     return (

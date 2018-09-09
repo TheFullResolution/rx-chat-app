@@ -1,0 +1,18 @@
+.container {
+  text-align: center;
+
+  nav {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.navItem {
+  @extend %button;
+  @include coloriseBtn($secondaryColor);
+  color: $backgroundColor;
+
+  &+.navItem {
+    margin-left: $marginM;
+  }
+}

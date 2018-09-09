@@ -1,15 +1,17 @@
 import './global.scss'
 
+import 'focus-visible/dist/focus-visible.js'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
 import { App } from './Components/App/App'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { store } from './store/redux'
+import { chatStore } from './store/redux'
 
 const RootWithoutHot = () => (
-    <Provider store={store}>
+    <Provider store={chatStore}>
         <BrowserRouter>
             <App />
         </BrowserRouter>

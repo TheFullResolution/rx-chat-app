@@ -1,0 +1,20 @@
+.form {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.button {
+  @extend %button;
+  @include coloriseBtn($primaryColor);
+  color: $backgroundColor;
+}
+
+.error {
+  text-align: center;
+  margin-bottom: $marginM;
+  color: $warningColor;
+}
+
+.controls {
+  text-align: center;
+}

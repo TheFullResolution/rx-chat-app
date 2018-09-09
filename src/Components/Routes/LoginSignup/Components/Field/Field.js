@@ -1,33 +1,37 @@
+import * as style from './Filed.scss'
+
 import PropTypes from 'prop-types'
-import React, { Fragment } from 'react'
+import React from 'react'
+import classNames from 'classnames'
 
 export const Field = ({
+  autoComplete,
   error,
-  label,
   handleBlur,
   handleChange,
   id,
+  label,
   placeholder,
   touched,
   type,
   value,
 }) => (
-  <Fragment>
-    <label htmlFor={id}>{label}</label>
+  <div className={style.container}>
+    <label htmlFor={id} className={classNames(style.label)}>
+      {label}
+    </label>
     <input
-      id={id}
-      placeholder={placeholder}
-      type={type}
-      value={value}
+      {...{ autoComplete, id, placeholder, type, value }}
       onChange={handleChange}
       onBlur={handleBlur}
-      className={error && touched ? 'text-input error' : 'text-input'}
+      className={classNames(style.input, error && touched && style.errorInput)}
     />
-    {error && touched && <div className="input-feedback">{error}</div>}
-  </Fragment>
+    {error && touched && <div className={style.error}>{error}</div>}
+  </div>
 )
 
 Field.propTypes = {
+  autoComplete: PropTypes.string.isRequired,
   error: PropTypes.string,
   handleBlur: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,

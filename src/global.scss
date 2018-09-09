@@ -6,8 +6,15 @@ html,
 body {
   margin: 0;
   font-size: 14px;
+  background-color: $backgroundColor;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
+}
+
+:global {
+  .js-focus-visible :focus:not(.focus-visible) {
+    outline: none;
+  }
 }

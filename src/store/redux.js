@@ -12,8 +12,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const epicMiddleware = createEpicMiddleware()
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(epicMiddleware)))
+const chatStore = createStore(rootReducer, composeEnhancers(applyMiddleware(epicMiddleware)))
 
 epicMiddleware.run(rootEpic)
 
-export { store }
+export { chatStore }
