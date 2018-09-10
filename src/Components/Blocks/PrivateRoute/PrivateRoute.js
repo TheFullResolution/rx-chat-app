@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Route, Redirect, withRouter } from 'react-router-dom'
 import { Loader } from '../Loader/Loader'
+import { ROUTER_PATHS } from '../../App/App'
 
 export class PrivateRouteComponent extends Component {
   static propTypes = {
@@ -34,7 +35,7 @@ export class PrivateRouteComponent extends Component {
           return (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: ROUTER_PATHS.login,
                 state: { from: props.location },
               }}
             />

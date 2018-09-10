@@ -10,6 +10,11 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+    }),
+  ],
   module: {
     rules: [
       {

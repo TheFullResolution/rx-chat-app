@@ -10,6 +10,14 @@ import { chatStore } from '../../store/redux'
 import { startLoadingFirebase } from '../../store/firebase/actions'
 import { PrivateRoute } from '../Blocks/PrivateRoute/PrivateRoute'
 
+const ROUTE_VAR = process.env.NODE_ENV === 'production' ? '/chatapp' : ''
+
+export const ROUTER_PATHS = {
+  home: `${ROUTE_VAR}/`,
+  login: `${ROUTE_VAR}/login`,
+  signup: `${ROUTE_VAR}/signup`,
+}
+
 export class App extends Component {
   componentDidMount() {
     chatStore.dispatch(startLoadingFirebase())
@@ -19,9 +27,9 @@ export class App extends Component {
       <div className={style.container}>
         <Header />
         <Switch>
-          <PrivateRoute path="/" component={Home} exact />
-          <Route path="/login" component={LoginSignupRoute} exact />
-          <Route path="/signup" component={LoginSignupRoute} exact />
+          <PrivateRoute path={ROUTER_PATHS.home} component={Home} exact />
+          <Route path={ROUTER_PATHS.signup} component={LoginSignupRoute} exact />
+          <Route path={ROUTER_PATHS.login} component={LoginSignupRoute} exact />
           <Route component={NotFound} />
         </Switch>
       </div>

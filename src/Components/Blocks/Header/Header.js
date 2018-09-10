@@ -26,10 +26,10 @@ const HeaderComponent = ({ user, loggedIn }) => (
       )}
       {!loggedIn && (
         <Fragment>
-          <Link className={style.navItem} to="/login">
+          <Link className={style.navItem} to={`${process.env.ROUTE}/login`}>
             Login
           </Link>
-          <Link className={style.navItem} to="/signup">
+          <Link className={style.navItem} to={`${process.env.ROUTE}/signup`}>
             Signup
           </Link>
         </Fragment>

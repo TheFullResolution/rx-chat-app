@@ -4,10 +4,11 @@ import connect from 'react-redux/es/connect/connect'
 import { Redirect, withRouter } from 'react-router-dom'
 import { COMMON_FIELDS, LOGIN, LOGIN_FIELDS, SIGNUP, SIGNUP_FIELDS } from './LoginSignupConstants'
 import { LoginSignupView } from './LoginSignupView'
+import { ROUTER_PATHS } from '../../App/App'
 
 export const LoginSignupComponent = ({ loggedIn, location }) => {
   const { from } = location.state || {
-    from: { pathname: '/' },
+    from: { pathname: ROUTER_PATHS.home },
   }
 
   if (loggedIn) {
@@ -15,10 +16,10 @@ export const LoginSignupComponent = ({ loggedIn, location }) => {
   }
 
   switch (location.pathname) {
-    case '/login':
+    case ROUTER_PATHS.login:
       return <LoginSignupView variant={LOGIN} fields={[...COMMON_FIELDS, ...LOGIN_FIELDS]} />
 
-    case '/signup':
+    case ROUTER_PATHS.signup:
       return <LoginSignupView variant={SIGNUP} fields={[...COMMON_FIELDS, ...SIGNUP_FIELDS]} />
   }
 }
