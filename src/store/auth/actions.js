@@ -1,9 +1,13 @@
 export const SET_AUTHENTICATED = '[Auth] Set Authenticated'
 export const SET_UNAUTHENTICATED = '[Auth] Set Unauthenticated'
-export const UPDATE_USER = '[Auth] Update User'
+export const SET_USER_UPDATE = '[Auth] Set User Update'
 
-export const authenticated = (user) => ({ type: SET_AUTHENTICATED, payload: user })
+export const setAuthenticated = (user) => ({ type: SET_AUTHENTICATED, payload: user })
 
-export const notAuthenticated = () => ({ type: SET_UNAUTHENTICATED })
+export const setUnauthenticated = () => ({ type: SET_UNAUTHENTICATED })
 
-export const updateUser = (user) => ({ type: UPDATE_USER, payload: user })
+export const setUserUpdate = (user) => ({ type: SET_USER_UPDATE, payload: user })
+
+
+
+

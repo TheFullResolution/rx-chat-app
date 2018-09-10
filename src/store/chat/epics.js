@@ -10,6 +10,7 @@ import {
 } from './actions'
 import { flatMap, map } from 'rxjs/operators'
 import { COLLECTION } from '../firebase/config'
+import { createObservableFromFirebase } from '../utils/createObservable'
 
 const LIMIT = 25
 
@@ -58,15 +59,11 @@ export const chatPostMessageEpic = (action$, state$, { firebase }) =>
     flatMap(([app, payload]) => {
       const ref = app.firestore().collection(COLLECTION)
 
-      return from(
-        new Promise((resolve) => {
-          ref
-            .add({
-              message: payload,
-              posted: app.firebase_.firestore.FieldValue.serverTimestamp(),
-              user: state$.value.auth.user.displayName,
-            })
-            .then(() => resolve('done'))
+      return createObservableFromFirebase(
+        ref.add({
+          message: payload,
+          posted: app.firebase_.firestore.FieldValue.serverTimestamp(),
+          user: state$.value.auth.user.displayName,
         })
       )
     }),

@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import connect from 'react-redux/es/connect/connect'
 import { Redirect, withRouter } from 'react-router-dom'
-import { Form } from './Components/Form/Form'
 import { COMMON_FIELDS, LOGIN, LOGIN_FIELDS, SIGNUP, SIGNUP_FIELDS } from './LoginSignupConstants'
+import { LoginSignupView } from './LoginSignupView'
 
 export const LoginSignupComponent = ({ loggedIn, location }) => {
   const { from } = location.state || {
@@ -16,10 +16,10 @@ export const LoginSignupComponent = ({ loggedIn, location }) => {
 
   switch (location.pathname) {
     case '/login':
-      return <Form variant={LOGIN} fields={[...COMMON_FIELDS, ...LOGIN_FIELDS]} />
+      return <LoginSignupView variant={LOGIN} fields={[...COMMON_FIELDS, ...LOGIN_FIELDS]} />
 
     case '/signup':
-      return <Form variant={SIGNUP} fields={[...COMMON_FIELDS, ...SIGNUP_FIELDS]} />
+      return <LoginSignupView variant={SIGNUP} fields={[...COMMON_FIELDS, ...SIGNUP_FIELDS]} />
   }
 }
 
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => ({
   loggedIn: state.auth.loggedIn,
 })
 
-export const LoginSignup = withRouter(connect(mapStateToProps)(LoginSignupComponent))
+export const LoginSignupRoute = withRouter(connect(mapStateToProps)(LoginSignupComponent))

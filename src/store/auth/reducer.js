@@ -1,4 +1,4 @@
-import { SET_AUTHENTICATED, SET_UNAUTHENTICATED, UPDATE_USER } from './actions'
+import { SET_AUTHENTICATED, SET_UNAUTHENTICATED, SET_USER_UPDATE } from './actions'
 
 const defaultState = {
   loggedIn: false,
@@ -14,13 +14,13 @@ const authReducer = (state = defaultState, action) => {
         profileLoaded: true,
         user: { uid: action.payload.uid, displayName: action.payload.displayName },
       }
-    case UPDATE_USER:
-      return {
-        ...state,
-        user: { ...state.user, displayName: action.payload.displayName },
-      }
     case SET_UNAUTHENTICATED:
       return { ...defaultState, profileLoaded: true }
+    case SET_USER_UPDATE:
+      return {
+        ...state,
+        user: { ...state.user, displayName: action.payload },
+      }
     default:
       return state
   }
