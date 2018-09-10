@@ -14,28 +14,30 @@ export const FormView = ({
   handleChange,
   handleBlur,
 }) => (
-  <form onSubmit={handleSubmit} className={style.form}>
-    {fields.map((field) => (
-      <Field
-        key={field.id}
-        error={errors[field.id]}
-        id={field.id}
-        autoComplete={field.autoComplete}
-        label={field.label}
-        placeholder={field.placeholder}
-        touched={touched[field.id]}
-        type={field.type}
-        value={values[field.id] || ''}
-        {...{ handleBlur, handleChange }}
-      />
-    ))}
-    {errors.form && <div className={style.error}>{errors.form}</div>}
-    <div className={style.controls}>
-      <button type="submit" className={style.button} disabled={isSubmitting}>
-        Submit
-      </button>
-    </div>
-  </form>
+  <div className={style.container}>
+    <form onSubmit={handleSubmit} className={style.form}>
+      {fields.map((field) => (
+        <Field
+          key={field.id}
+          error={errors[field.id]}
+          id={field.id}
+          autoComplete={field.autoComplete}
+          label={field.label}
+          placeholder={field.placeholder}
+          touched={touched[field.id]}
+          type={field.type}
+          value={values[field.id] || ''}
+          {...{ handleBlur, handleChange }}
+        />
+      ))}
+      {errors.form && <div className={style.error}>{errors.form}</div>}
+      <div className={style.controls}>
+        <button type="submit" className={style.button} disabled={isSubmitting}>
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
 )
 
 FormView.propTypes = {
@@ -46,5 +48,5 @@ FormView.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   touched: PropTypes.object.isRequired,
-  values: PropTypes.object.isRequired
+  values: PropTypes.object.isRequired,
 }

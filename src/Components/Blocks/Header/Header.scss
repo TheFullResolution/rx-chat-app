@@ -1,9 +1,17 @@
 .container {
   text-align: center;
+  padding-top: $marginM;
 
   nav {
     display: flex;
     justify-content: center;
+  }
+
+  h1 {
+    margin: {
+      bottom: $marginM;
+      top: 0;
+    }
   }
 }
 
@@ -12,7 +20,7 @@
   @include coloriseBtn($secondaryColor);
   color: $backgroundColor;
 
-  &+.navItem {
+  & + .navItem {
     margin-left: $marginM;
   }
 }

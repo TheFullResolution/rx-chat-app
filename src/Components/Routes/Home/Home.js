@@ -1,19 +1,20 @@
+import * as style from './Home.scss'
+
 import React, { Component } from 'react'
 import { Chat } from './Components/Chat/Chat'
-import { Message } from './Components/Message/Message'
+import { SendMessage } from './Components/SendMessage/SendMessage'
 import { chatStore } from '../../../store/redux'
 import { chatInitStart } from '../../../store/chat/actions'
 
 export class Home extends Component {
-  onClick = () => {
+  componentDidMount() {
     chatStore.dispatch(chatInitStart())
   }
   render() {
     return (
-      <div>
-        <button onClick={this.onClick}>TEST</button>
+      <div className={style.container}>
         <Chat />
-        <Message />
+        <SendMessage />
       </div>
     )
   }

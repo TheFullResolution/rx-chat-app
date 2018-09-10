@@ -3,6 +3,7 @@ import { collectionData } from 'rxfire/firestore'
 import { COLLECTION } from '../firebase/config'
 import { chatNewMessage } from './actions'
 import { map, filter } from 'rxjs/operators'
+import { formatDate } from '../utils/formatDate'
 
 export const chatListener = (firebaseApp) => {
   const messages = firebaseApp
@@ -14,7 +15,8 @@ export const chatListener = (firebaseApp) => {
   collectionData(messages, 'id')
     .pipe(
       map((messageArray) => messageArray[0]),
-      filter((message) => message.posted)
+      filter((message) => message && message.posted),
+      map((message) => ({ ...message, posted: formatDate(message.posted.seconds) }))
     )
     .subscribe((message) => {
       chatStore.dispatch(chatNewMessage(message))

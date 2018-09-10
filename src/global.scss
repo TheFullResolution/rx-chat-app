@@ -5,12 +5,21 @@
 html,
 body {
   margin: 0;
-  font-size: 14px;
-  background-color: $backgroundColor;
+}
+
+html {
+  height: 100%;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  background-color: $backgroundColor;
+  min-height: 100%;
+  display: flex;
+  > div {
+    flex: 1;
+  }
 }
 
 :global {

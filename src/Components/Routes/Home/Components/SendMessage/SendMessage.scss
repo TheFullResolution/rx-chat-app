@@ -1,4 +1,17 @@
 .form {
+  margin: {
+    bottom: $marginL;
+  }
+
+  > p {
+    color: $primaryColor;
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+}
+
+.container {
   display: flex;
 }
 

@@ -1,0 +1,50 @@
+.container {
+  padding: $marginM;
+  border-radius: $marginXS;
+  border: 1px solid $primaryColor;
+  background-color: $backgroundColorShade;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  background-color: white;
+  padding: $marginM;
+  border-radius: $marginXS;
+}
+
+.details {
+  font-size: 10px;
+  padding: $marginXS;
+}
+
+.other {
+  align-self: flex-start;
+  .text {
+    border: 1px solid $warningColor;
+  }
+}
+
+.user {
+  align-self: flex-end;
+  .text {
+    border: 1px solid $secondaryColor;
+  }
+  .details {
+    text-align: right;
+  }
+}

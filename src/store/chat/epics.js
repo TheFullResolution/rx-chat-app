@@ -11,6 +11,7 @@ import {
 import { flatMap, map } from 'rxjs/operators'
 import { COLLECTION } from '../firebase/config'
 import { createObservableFromFirebase } from '../utils/createObservable'
+import { formatDate } from '../utils/formatDate'
 
 const LIMIT = 25
 
@@ -37,6 +38,7 @@ export const chatInitEpic = (action$, state$, { firebase }) =>
 
       return snapshot.slice(1)
     }),
+    map((data) => data.map((entry) => ({ ...entry, posted: formatDate(entry.posted.seconds) }))),
     map((data) => chatHistoryLoaded(data))
   )
 
@@ -62,6 +64,7 @@ export const chatPostMessageEpic = (action$, state$, { firebase }) =>
       return createObservableFromFirebase(
         ref.add({
           message: payload,
+          uid: state$.value.auth.user.uid,
           posted: app.firebase_.firestore.FieldValue.serverTimestamp(),
           user: state$.value.auth.user.displayName,
         })
