@@ -1,5 +1,5 @@
 import { ofType } from 'redux-observable'
-import { combineLatest, from } from 'rxjs'
+import { combineLatest, concat, from, of } from 'rxjs'
 import {
   CHAT_INIT_START,
   CHAT_HISTORY_LOADED,
@@ -7,11 +7,16 @@ import {
   chatInitSuccessful,
   chatMessagePosted,
   chatHistoryLoaded,
+  chatNewMessage,
 } from './actions'
-import { flatMap, map } from 'rxjs/operators'
+import { filter, flatMap, map, switchMap, takeUntil } from 'rxjs/operators'
 import { COLLECTION } from '../firebase/config'
 import { createObservableFromFirebase } from '../utils/createObservable'
 import { formatDate } from '../utils/formatDate'
+import { collectionData } from 'rxfire/firestore'
+import { chatStore } from '../redux'
+import { userSignupFinish } from '../loginSignup/actions'
+import { SET_UNAUTHENTICATED, setUserUpdate } from '../auth/actions'
 
 const LIMIT = 25
 
@@ -38,18 +43,33 @@ export const chatInitEpic = (action$, state$, { firebase }) =>
 
       return snapshot.slice(1)
     }),
-    map((data) => data.map((entry) => ({ ...entry, posted: formatDate(entry.posted.seconds) }))),
+    map((data) =>
+      data.map((entry) => ({ ...entry, posted: formatDate(entry.posted.seconds) })).reverse()
+    ),
     map((data) => chatHistoryLoaded(data))
   )
 
-export const chatInitSuccessfulEpic = (action$, state$, { firebase, listeners }) =>
+export const chatInitSuccessfulEpic = (action$, state$, { firebase }) =>
   action$.pipe(
     ofType(CHAT_HISTORY_LOADED),
     flatMap(() => {
       return combineLatest(firebase)
     }),
-    map(([app]) => listeners.chat(app)),
-    map(() => chatInitSuccessful())
+    flatMap(([app]) => {
+      const messages = app
+        .firestore()
+        .collection(COLLECTION)
+        .orderBy('posted', 'desc')
+        .limit(1)
+
+      return collectionData(messages, 'id').pipe(
+        map((messageArray) => messageArray[0]),
+        filter((message) => message && message.posted),
+        map((message) => ({ ...message, posted: formatDate(message.posted.seconds) })),
+        map((message) => chatNewMessage(message)),
+        takeUntil(action$.pipe(ofType(SET_UNAUTHENTICATED)))
+      )
+    })
   )
 
 export const chatPostMessageEpic = (action$, state$, { firebase }) =>

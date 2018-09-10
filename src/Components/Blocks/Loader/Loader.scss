@@ -1,0 +1,28 @@
+.loader {
+ text-align: center;
+  margin-top: $marginL;
+}
+
+.wrapper {
+  text-align: left;
+  margin-bottom: $marginM;
+}
+
+.loaderText {
+  width: 80px;
+  margin: 0 auto;
+  &::after {
+    animation: ellipsis steps(4, end) 900ms infinite;
+    content: '\2026'; /* ascii code for the ellipsis character */
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    width: 0px;
+  }
+}
+
+@keyframes ellipsis {
+  to {
+    width: 20px;
+  }
+}

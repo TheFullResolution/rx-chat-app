@@ -1,38 +1,42 @@
+import PropTypes from 'prop-types'
 import * as style from './Chat.scss'
 
-import React from 'react'
+import React, { Component, createRef } from 'react'
 import { connect } from 'react-redux'
-import classNames from 'classnames'
+import { ChatMessage } from './ChatMessage'
+import { Loader } from '../../../../Blocks/Loader/Loader'
 
-const Message = ({ element, userID }) => {
-  if (element.uid === userID) {
+class ChatComponent extends Component {
+  containerRef = createRef()
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.messages.length < this.props.messages.length) {
+      this.scrollList()
+    }
+  }
+
+  scrollList = () => {
+    const { scrollHeight } = this.containerRef.current
+    this.containerRef.current.scrollTop = scrollHeight
+  }
+
+  render() {
+    const { initiated, messages, userID } = this.props
     return (
-      <li className={classNames(style.message, style.user)}>
-        <span className={style.text}>{element.message}</span>
-        <span className={style.details}>posted: {element.posted}</span>
-      </li>
+      <div className={style.container} ref={this.containerRef}>
+        {initiated && messages.length ? (
+          <ul className={style.list} >
+            {messages.map((message) => (
+              <ChatMessage element={message} key={message.id} userID={userID} />
+            ))}
+          </ul>
+        ) : (
+          <Loader />
+        )}
+      </div>
     )
   }
-  return (
-    <li className={classNames(style.message, style.other)}>
-      <span className={style.details}>{element.user} wrote:</span>
-      <span className={style.text}>{element.message}</span>
-      <span className={style.details}>posted: {element.posted}</span>
-    </li>
-  )
 }
-
-const ChatComponent = ({ initiated, messages, userID }) => (
-  <div className={style.container}>
-    <ul className={style.list}>
-      {initiated && messages.length ? (
-        messages.map((message) => <Message element={message} key={message.id} userID={userID} />)
-      ) : (
-        <p>Loading</p>
-      )}
-    </ul>
-  </div>
-)
 
 const mapStateToProps = (state) => ({
   messages: state.chat.messages,
@@ -41,3 +45,9 @@ const mapStateToProps = (state) => ({
 })
 
 export const Chat = connect(mapStateToProps)(ChatComponent)
+
+ChatComponent.propTypes = {
+  initiated: PropTypes.bool.isRequired,
+  messages: PropTypes.array,
+  userID: PropTypes.string.isRequired,
+}

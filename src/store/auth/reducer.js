@@ -1,4 +1,9 @@
-import { SET_AUTHENTICATED, SET_UNAUTHENTICATED, SET_USER_UPDATE } from './actions'
+import {
+  SET_AUTHENTICATED,
+  SET_UNAUTHENTICATED,
+  SET_USER_UPDATE,
+  START_AUTH_LISTENER,
+} from './actions'
 
 const defaultState = {
   loggedIn: false,
@@ -8,6 +13,8 @@ const defaultState = {
 
 const authReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case START_AUTH_LISTENER:
+      return state
     case SET_AUTHENTICATED:
       return {
         loggedIn: true,
