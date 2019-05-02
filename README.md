@@ -23,7 +23,8 @@ Building this project using Angular and AngularFire would be definitely easier, 
 
 ## Usage
 
-You can check project here: 
+You can check project here: [https://rxchatapp.netlify.com/](https://rxchatapp.netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b40b52dd-efe5-4709-bdeb-07e78a9b577c/deploy-status)](https://app.netlify.com/sites/rxchatapp/deploys)
 
 Or, after installing all the dependencies locally using `npm npm i`, run `npm start`
 
