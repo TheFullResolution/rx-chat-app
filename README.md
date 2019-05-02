@@ -23,7 +23,7 @@ Building this project using Angular and AngularFire would be definitely easier, 
 
 ## Usage
 
-You can check project here: https://www.thefullresolution.com/chatapp/
+You can check project here: 
 
 Or, after installing all the dependencies locally using `npm npm i`, run `npm start`
 

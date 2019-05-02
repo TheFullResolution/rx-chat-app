@@ -5,6 +5,7 @@ import React, { Fragment } from 'react'
 import { firebaseApp$ } from '../../../store/firebase/config'
 import { Link, withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
+import { ROUTER_PATHS } from '../../App/App'
 
 const logOut = (ev) => {
   ev.preventDefault()
@@ -26,10 +27,10 @@ const HeaderComponent = ({ user, loggedIn }) => (
       )}
       {!loggedIn && (
         <Fragment>
-          <Link className={style.navItem} to={`${process.env.ROUTE}/login`}>
+          <Link className={style.navItem} to={ROUTER_PATHS.login}>
             Login
           </Link>
-          <Link className={style.navItem} to={`${process.env.ROUTE}/signup`}>
+          <Link className={style.navItem} to={ROUTER_PATHS.signup}>
             Signup
           </Link>
         </Fragment>

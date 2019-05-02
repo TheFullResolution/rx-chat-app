@@ -28,6 +28,7 @@ const config = {
                 '@babel/preset-env',
                 {
                   useBuiltIns: 'entry',
+                  corejs: '3.0.1',
                   targets: '> 5%, not dead',
                 },
               ],

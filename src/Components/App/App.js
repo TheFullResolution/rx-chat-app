@@ -10,12 +10,11 @@ import { chatStore } from '../../store/redux'
 import { startLoadingFirebase } from '../../store/firebase/actions'
 import { PrivateRoute } from '../Blocks/PrivateRoute/PrivateRoute'
 
-const ROUTE_VAR = process.env.NODE_ENV === 'production' ? '/chatapp' : ''
 
 export const ROUTER_PATHS = {
-  home: `${ROUTE_VAR}/`,
-  login: `${ROUTE_VAR}/login`,
-  signup: `${ROUTE_VAR}/signup`,
+  home: "/",
+  login: "/login",
+  signup: "/signup",
 }
 
 export class App extends Component {
